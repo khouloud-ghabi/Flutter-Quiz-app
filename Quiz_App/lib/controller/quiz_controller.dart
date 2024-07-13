@@ -153,7 +153,7 @@ class QuizController extends GetxController {
     update();
   }
 
-  IconData getIcon(int ansmerIndex) {
+  getColor(int ansmerIndex) {
     if (_isPressed) {
       if (ansmerIndex == _correctAnswer) {
         return Icons.done;
@@ -205,7 +205,7 @@ class QuizController extends GetxController {
 
   void resetTimer() => _secnd.value = maxSecnd;
 
-    bool checkIsQuestionAnswered(int quesId) {
+  bool checkIsQuestionAnswered(int quesId) {
     return __questionIsAnswer.entries
         .firstWhere((element) => element.key == quesId)
         .value;

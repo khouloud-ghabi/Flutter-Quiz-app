@@ -56,7 +56,7 @@ class AnswerOption extends StatelessWidget {
                             ),
                             shape: BoxShape.circle),
                         child: Icon(
-                          controller.getIcon(index),
+                          controller.getColor(index),
                           color: Colors.white,
                         ))
                 ],
