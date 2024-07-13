@@ -156,16 +156,14 @@ class QuizController extends GetxController {
   IconData getIcon(int ansmerIndex) {
     if (_isPressed) {
       if (ansmerIndex == _correctAnswer) {
-        return Colors.green;
+        return Icons.done;
       } else if (ansmerIndex == _selectedAnswer &&
           _correctAnswer != _selectedAnswer) {
-        return Icons.done;
+        return Icons.close;
       }
     }
     return Icons.close;
   }
-
-  void stopTimer() {}
 
   nextQuestion() {
     if (_timer != null || _timer!.isActive) {
@@ -183,5 +181,19 @@ class QuizController extends GetxController {
     update();
   }
 
-  void startTimer() {}
+  void startTimer() {
+    resetTimer();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_secnd.value > 0) {
+        -secnd.value--;
+      } else {
+        stopTimer();
+        nextQuestion();
+      }
+    });
+  }
+
+  void stopTimer() => _timer!.cancel();
+
+  void resetTimer() => _secnd.value = maxSecnd;
 }
