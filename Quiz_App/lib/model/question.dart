@@ -3,5 +3,7 @@ class QuestionModel {
   String question;
   List<String> options;
 
-  QuestionModel(this.id, this.answer, this.question, this.options);
+  QuestionModel({
+    required this.id, required  this.answer, required  this.question, required  this.options
+    });
 }
