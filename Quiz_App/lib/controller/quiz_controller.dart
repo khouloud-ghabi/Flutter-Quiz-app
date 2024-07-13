@@ -193,6 +193,14 @@ class QuizController extends GetxController {
     });
   }
 
+  void startAgain() {
+    _correctAnswer = null;
+    _countCorrectAnswer = 0;
+    _selectedAnswer = null;
+    resetAnswer();
+    //todo navigation to welcom screen....
+  }
+
   void stopTimer() => _timer!.cancel();
 
   void resetTimer() => _secnd.value = maxSecnd;
