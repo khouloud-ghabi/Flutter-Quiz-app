@@ -204,4 +204,10 @@ class QuizController extends GetxController {
   void stopTimer() => _timer!.cancel();
 
   void resetTimer() => _secnd.value = maxSecnd;
+
+    bool checkIsQuestionAnswered(int quesId) {
+    return __questionIsAnswer.entries
+        .firstWhere((element) => element.key == quesId)
+        .value;
+  }
 }
