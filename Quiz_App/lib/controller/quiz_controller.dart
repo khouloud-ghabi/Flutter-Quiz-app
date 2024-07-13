@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/model/question.dart';
 
@@ -6,10 +9,14 @@ class QuizController extends GetxController {
   final List<QuestionModel> _questionList = [
     QuestionModel(
       id: 1,
-      question:
-          "Best Channel for Flutter ",
+      question: "Best Channel for Flutter ",
       answer: 2,
-      options: ['Sec it', 'Sec it developer', 'sec it developers', 'mesh sec it '],
+      options: [
+        'Sec it',
+        'Sec it developer',
+        'sec it developers',
+        'mesh sec it '
+      ],
     ),
     QuestionModel(
       id: 2,
@@ -31,8 +38,7 @@ class QuizController extends GetxController {
     ),
     QuestionModel(
       id: 5,
-      question:
-          "Best Rapper in Egypt",
+      question: "Best Rapper in Egypt",
       answer: 3,
       options: ['Eljoker', 'Abyu', 'R3', 'All of the above'],
     ),
@@ -56,10 +62,14 @@ class QuizController extends GetxController {
     ),
     QuestionModel(
       id: 9,
-      question:
-      "Best Channel for Flutter ",
+      question: "Best Channel for Flutter ",
       answer: 2,
-      options: ['Sec it', 'Sec it developer', 'sec it developers', 'mesh sec it '],
+      options: [
+        'Sec it',
+        'Sec it developer',
+        'sec it developers',
+        'mesh sec it '
+      ],
     ),
     QuestionModel(
       id: 10,
@@ -68,4 +78,93 @@ class QuizController extends GetxController {
       options: ['BloC', 'GetX', 'Provider', 'riverPod'],
     ),
   ];
+
+  bool _isPressed = false;
+  double _QuestionNumber = 1;
+  int? _selectedAnswer;
+  int _countCorrectAnswer = 0;
+  final RxInt _secnd = 30.obs;
+
+  int get countQuestion => _questionList.length;
+
+  List<QuestionModel> get questionList => [..._questionList];
+  bool get isPressed => _isPressed;
+
+  double get QuestionNumber => _QuestionNumber;
+
+  int? get selectedAnswer => _selectedAnswer;
+
+  int get countCorrectAnswer => _countCorrectAnswer;
+
+  RxInt get secnd => this._secnd;
+
+  int? _correctAnswer;
+  final Map<int, bool> __questionIsAnswer = {};
+  Timer? _timer;
+  final maxSecnd = 30;
+  late PageController pageController;
+
+  @override
+  void onInit() {
+    pageController = PageController(initialPage: 0);
+    resetAnswer();
+
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    pageController.dispose();
+    resetAnswer();
+
+    super.onClose();
+  }
+
+  double get scoreResult {
+    return countCorrectAnswer * 100 / _questionList.length;
+  }
+
+  void checkAnswer(QuestionModel questioModel, int selectedAnswer) {
+    _isPressed = true;
+    _selectedAnswer = _selectedAnswer;
+    _correctAnswer = questioModel.answer;
+    if (_correctAnswer == _selectedAnswer) {
+      _countCorrectAnswer++;
+    }
+    stopTimer();
+
+    __questionIsAnswer.update(questioModel.id, (value) => true);
+    Future.delayed(const Duration(milliseconds: 500))
+        .then((Value) => nextQuestion());
+
+    update();
+  }
+
+  bool chekIsQuestionAnswer(int quesID) {
+    return __questionIsAnswer.entries
+        .firstWhere((element) => element.key == quesID)
+        .value;
+  }
+
+  void resetAnswer() {}
+
+  void stopTimer() {}
+
+  nextQuestion() {
+    if (_timer != null || _timer!.isActive) {
+      stopTimer();
+    }
+    if (pageController.page == _questionList.length - 1) {
+      //todo navigation result screen.....
+    } else {
+      _isPressed = false;
+      pageController.nextPage(
+          duration: const Duration(milliseconds: 500), curve: Curves.linear);
+      startTimer();
+    }
+    _QuestionNumber = pageController.page! + 2;
+    update();
+  }
+
+  void startTimer() {}
 }
