@@ -146,7 +146,24 @@ class QuizController extends GetxController {
         .value;
   }
 
-  void resetAnswer() {}
+  void resetAnswer() {
+    for (var element in _questionList) {
+      __questionIsAnswer.addAll({element.id: false});
+    }
+    update();
+  }
+
+  IconData getIcon(int ansmerIndex) {
+    if (_isPressed) {
+      if (ansmerIndex == _correctAnswer) {
+        return Colors.green;
+      } else if (ansmerIndex == _selectedAnswer &&
+          _correctAnswer != _selectedAnswer) {
+        return Icons.done;
+      }
+    }
+    return Icons.close;
+  }
 
   void stopTimer() {}
 
