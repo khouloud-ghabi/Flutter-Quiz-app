@@ -36,54 +36,56 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        extendBody: true,
-        body: Container(
-          constraints: BoxConstraints.expand(),
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/sui.png'), fit: BoxFit.cover),
-          ),
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(15.0),
+      resizeToAvoidBottomInset: false,
+      extendBody: true,
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/sui.png'), fit: BoxFit.cover),
+        ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(screenSize.width * 0.04),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Spacer(
-                      flex: 2,
-                    ),
+                    SizedBox(height: screenSize.height * 0.2),
                     Text('Let\'s start Quiz,',
-                        style: TextStyle(color: KPrimaryColor)),
+                        style: TextStyle(
+                            color: KPrimaryColor,
+                            fontSize: screenSize.width * 0.05)),
                     Text(
                       'Enter your name to start',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .copyWith(color: Color.fromARGB(255, 7, 117, 212)),
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                          color: Color.fromARGB(255, 7, 117, 212),
+                          fontSize: screenSize.width * 0.04),
                     ),
-                    const Spacer(
-                      flex: 1,
-                    ),
+                    SizedBox(height: screenSize.height * 0.05),
                     Form(
                       key: _formkey,
                       child: GetBuilder<QuizController>(
                         init: Get.find<QuizController>(),
                         builder: (controller) => TextFormField(
                           controller: _nameController,
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 27, 9, 190)),
-                          decoration: const InputDecoration(
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 27, 9, 190),
+                              fontSize: screenSize.width * 0.04),
+                          decoration: InputDecoration(
                               labelText: 'Full Name',
                               labelStyle: TextStyle(
-                                  color: Color.fromARGB(255, 146, 147, 151)),
+                                  color: Color.fromARGB(255, 146, 147, 151),
+                                  fontSize: screenSize.width * 0.04),
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(width: 3),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15.0)))),
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(screenSize.width * 0.04)))),
                           validator: (String? val) {
                             if (val!.isEmpty) {
                               return 'Name should not be empty';
@@ -98,24 +100,24 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                       ),
                     ),
-                    const Spacer(
-                      flex: 1,
-                    ),
+                    SizedBox(height: screenSize.height * 0.05),
                     Align(
                       alignment: Alignment.center,
                       child: CustomButton(
-                          width: double.infinity,
-                          onPressed: () => _submit(context),
-                          text: 'Lets Start Quiz'),
+                        width: double.infinity,
+                        onPressed: () => _submit(context),
+                        text: 'Lets Start Quiz',
+                        fontSize: screenSize.width * 0.04,
+                      ),
                     ),
-                    const Spacer(
-                      flex: 2,
-                    ),
+                    SizedBox(height: screenSize.height * 0.2),
                   ],
                 ),
-              )
-            ],
-          ),
-        ));
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }

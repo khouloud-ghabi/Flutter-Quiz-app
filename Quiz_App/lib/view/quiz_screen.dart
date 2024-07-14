@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/controller/quiz_controller.dart';
-
 import 'package:quiz_app/widget/custom_button.dart';
 import 'package:quiz_app/widget/progress_timer.dart';
 import 'package:quiz_app/widget/question_card.dart';
@@ -13,21 +12,16 @@ class QuizScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
-      // extendBodyBehindAppBar: true,
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   backgroundColor: Colors.transparent,
-      // ),
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
           Container(
             decoration: const BoxDecoration(
-                // image: DecorationImage(
-                //     image: AssetImage('assets/images/here.jpg'),
-                //     fit: BoxFit.cover),
-                color: Color.fromARGB(221, 39, 104, 245)),
+              color: Color.fromARGB(221, 39, 104, 245),
+            ),
           ),
           SafeArea(
             child: GetBuilder<QuizController>(
@@ -36,50 +30,60 @@ class QuizScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(screenSize.width * 0.05),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         RichText(
                           text: TextSpan(
-                              text: 'Question ',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(
-                                      color:
-                                          Color.fromARGB(255, 255, 255, 255)),
-                              children: [
-                                TextSpan(
-                                    text: controller.QuestionNumber.round()
-                                        .toString(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline4!
-                                        .copyWith(color: Colors.white)),
-                                TextSpan(
-                                    text: '/',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline5!
-                                        .copyWith(color: Colors.white)),
-                                TextSpan(
-                                    text: controller.countQuestion.toString(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline5!
-                                        .copyWith(color: Colors.white)),
-                              ]),
+                            text: 'Question ',
+                            style:
+                                Theme.of(context).textTheme.headline4!.copyWith(
+                                      color: Colors.white,
+                                      fontSize: screenSize.width * 0.06,
+                                    ),
+                            children: [
+                              TextSpan(
+                                text: controller.QuestionNumber.round()
+                                    .toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline4!
+                                    .copyWith(
+                                      color: Colors.white,
+                                      fontSize: screenSize.width * 0.06,
+                                    ),
+                              ),
+                              TextSpan(
+                                text: '/',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5!
+                                    .copyWith(
+                                      color: Colors.white,
+                                      fontSize: screenSize.width * 0.05,
+                                    ),
+                              ),
+                              TextSpan(
+                                text: controller.countQuestion.toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5!
+                                    .copyWith(
+                                      color: Colors.white,
+                                      fontSize: screenSize.width * 0.05,
+                                    ),
+                              ),
+                            ],
+                          ),
                         ),
                         ProgressTimer(),
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  SizedBox(height: screenSize.height * 0.02),
                   SizedBox(
-                    height: 450,
+                    height: screenSize.height * 0.5,
                     child: PageView.builder(
                       scrollDirection: Axis.horizontal,
                       physics: const NeverScrollableScrollPhysics(),
@@ -90,9 +94,7 @@ class QuizScreen extends StatelessWidget {
                       itemCount: controller.questionList.length,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: screenSize.height * 0.03),
                 ],
               ),
             ),
@@ -102,7 +104,10 @@ class QuizScreen extends StatelessWidget {
       floatingActionButton: GetBuilder<QuizController>(
         init: QuizController(),
         builder: (controller) => CustomButton(
-            onPressed: () => controller.nextQuestion(), text: 'Next'),
+          onPressed: () => controller.nextQuestion(),
+          text: 'Next',
+          fontSize: screenSize.width * 0.05,
+        ),
       ),
     );
   }
