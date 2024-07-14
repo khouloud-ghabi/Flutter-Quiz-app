@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/model/question.dart';
+import 'package:quiz_app/view/result_screen.dart';
+import 'package:quiz_app/view/welcome_screen.dart';
 
 class QuizController extends GetxController {
   String name = '';
@@ -108,44 +110,62 @@ class QuizController extends GetxController {
   void onInit() {
     pageController = PageController(initialPage: 0);
     resetAnswer();
-
     super.onInit();
   }
 
   @override
   void onClose() {
     pageController.dispose();
-    resetAnswer();
-
     super.onClose();
   }
 
+  //get final score
   double get scoreResult {
     return countCorrectAnswer * 100 / _questionList.length;
   }
 
-  void checkAnswer(QuestionModel questioModel, int selectedAnswer) {
+  void checkAnswer(QuestionModel questionModel, int selectAnswer) {
     _isPressed = true;
-    _selectedAnswer = _selectedAnswer;
-    _correctAnswer = questioModel.answer;
+
+    _selectedAnswer = selectAnswer;
+    _correctAnswer = questionModel.answer;
+
     if (_correctAnswer == _selectedAnswer) {
       _countCorrectAnswer++;
     }
     stopTimer();
-
-    __questionIsAnswer.update(questioModel.id, (value) => true);
+    __questionIsAnswer.update(questionModel.id, (value) => true);
     Future.delayed(const Duration(milliseconds: 500))
-        .then((Value) => nextQuestion());
-
+        .then((value) => nextQuestion());
     update();
   }
 
-  bool chekIsQuestionAnswer(int quesID) {
+  //check if the question has been answered
+  bool checkIsQuestionAnswered(int quesId) {
     return __questionIsAnswer.entries
-        .firstWhere((element) => element.key == quesID)
+        .firstWhere((element) => element.key == quesId)
         .value;
   }
 
+  void nextQuestion() {
+    if (_timer != null || _timer!.isActive) {
+      stopTimer();
+    }
+
+    if (pageController.page == _questionList.length - 1) {
+      Get.offAndToNamed(ResultScreen.routeName);
+    } else {
+      _isPressed = false;
+      pageController.nextPage(
+          duration: const Duration(milliseconds: 500), curve: Curves.linear);
+
+      startTimer();
+    }
+    _QuestionNumber = pageController.page! + 2;
+    update();
+  }
+
+  //called when start again quiz
   void resetAnswer() {
     for (var element in _questionList) {
       __questionIsAnswer.addAll({element.id: false});
@@ -153,11 +173,25 @@ class QuizController extends GetxController {
     update();
   }
 
-  getColor(int ansmerIndex) {
+  //get right and wrong color
+  Color getColor(int answerIndex) {
     if (_isPressed) {
-      if (ansmerIndex == _correctAnswer) {
+      if (answerIndex == _correctAnswer) {
+        return Colors.green.shade700;
+      } else if (answerIndex == _selectedAnswer &&
+          _correctAnswer != _selectedAnswer) {
+        return Colors.red.shade700;
+      }
+    }
+    return Colors.white;
+  }
+
+  //het right and wrong icon
+  IconData getIcon(int answerIndex) {
+    if (_isPressed) {
+      if (answerIndex == _correctAnswer) {
         return Icons.done;
-      } else if (ansmerIndex == _selectedAnswer &&
+      } else if (answerIndex == _selectedAnswer &&
           _correctAnswer != _selectedAnswer) {
         return Icons.close;
       }
@@ -165,27 +199,11 @@ class QuizController extends GetxController {
     return Icons.close;
   }
 
-  nextQuestion() {
-    if (_timer != null || _timer!.isActive) {
-      stopTimer();
-    }
-    if (pageController.page == _questionList.length - 1) {
-      //todo navigation result screen.....
-    } else {
-      _isPressed = false;
-      pageController.nextPage(
-          duration: const Duration(milliseconds: 500), curve: Curves.linear);
-      startTimer();
-    }
-    _QuestionNumber = pageController.page! + 2;
-    update();
-  }
-
   void startTimer() {
     resetTimer();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_secnd.value > 0) {
-        -secnd.value--;
+        _secnd.value--;
       } else {
         stopTimer();
         nextQuestion();
@@ -193,21 +211,17 @@ class QuizController extends GetxController {
     });
   }
 
+  void resetTimer() => _secnd.value = maxSecnd;
+
+  void stopTimer() => _timer!.cancel();
+  //call when start again quiz
   void startAgain() {
     _correctAnswer = null;
     _countCorrectAnswer = 0;
-    _selectedAnswer = null;
     resetAnswer();
-    //todo navigation to welcom screen....
-  }
-
-  void stopTimer() => _timer!.cancel();
-
-  void resetTimer() => _secnd.value = maxSecnd;
-
-  bool checkIsQuestionAnswered(int quesId) {
-    return __questionIsAnswer.entries
-        .firstWhere((element) => element.key == quesId)
-        .value;
+    _selectedAnswer = null;
+    Get.offAllNamed(WelcomeScreen.routeName);
   }
 }
+
+class _questionsList {}

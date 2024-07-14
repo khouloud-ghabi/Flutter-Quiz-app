@@ -5,7 +5,6 @@ import 'package:quiz_app/controller/quiz_controller.dart';
 import 'package:quiz_app/view/quiz_screen.dart';
 import 'package:quiz_app/widget/custom_button.dart';
 
-
 import '../constants.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -39,13 +38,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-       extendBody: true,
+        extendBody: true,
         body: Container(
           constraints: BoxConstraints.expand(),
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/images/sui.png'),
-                fit: BoxFit.cover),
+                image: AssetImage('assets/images/sui.png'), fit: BoxFit.cover),
           ),
           child: Stack(
             children: [
@@ -58,16 +56,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     const Spacer(
                       flex: 2,
                     ),
-                    Text(
-                      'Let\'s start Quiz,',
-                      style: TextStyle(color: KPrimaryColor)
-                    ),
+                    Text('Let\'s start Quiz,',
+                        style: TextStyle(color: KPrimaryColor)),
                     Text(
                       'Enter your name to start',
                       style: Theme.of(context)
                           .textTheme
                           .headline6!
-                          .copyWith(color: Colors.white),
+                          .copyWith(color: Color.fromARGB(255, 7, 117, 212)),
                     ),
                     const Spacer(
                       flex: 1,
@@ -78,10 +74,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         init: Get.find<QuizController>(),
                         builder: (controller) => TextFormField(
                           controller: _nameController,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 27, 9, 190)),
                           decoration: const InputDecoration(
                               labelText: 'Full Name',
-                              labelStyle: TextStyle(color: Colors.white),
+                              labelStyle: TextStyle(
+                                  color: Color.fromARGB(255, 146, 147, 151)),
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(width: 3),
                                   borderRadius:

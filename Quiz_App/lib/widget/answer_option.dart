@@ -52,11 +52,11 @@ class AnswerOption extends StatelessWidget {
                             color: controller.getColor(index),
                             border: Border.all(
                               color: Colors.white,
-                              width: 3,
+                              width: 2,
                             ),
                             shape: BoxShape.circle),
                         child: Icon(
-                          controller.getColor(index),
+                          controller.getIcon(index),
                           color: Colors.white,
                         ))
                 ],
