@@ -64,13 +64,13 @@ class QuizController extends GetxController {
     ),
     QuestionModel(
       id: 9,
-      question: "Best Channel for Flutter ",
+      question: "Which component allows us to specify the distance between widgets on the screen?",
       answer: 2,
       options: [
-        'Sec it',
-        'Sec it developer',
-        'sec it developers',
-        'mesh sec it '
+        'SafeArea',
+        'SizedBox',
+        'table',
+        'AppBar '
       ],
     ),
     QuestionModel(
