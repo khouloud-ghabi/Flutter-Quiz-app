@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/controller/quiz_controller.dart';
+import 'package:quiz_app/view/quiz_screen.dart';
 import 'package:quiz_app/widget/custom_button.dart';
 
 
