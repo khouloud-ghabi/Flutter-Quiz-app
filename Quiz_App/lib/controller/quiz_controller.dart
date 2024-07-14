@@ -22,9 +22,9 @@ class QuizController extends GetxController {
     ),
     QuestionModel(
       id: 2,
-      question: "Best State Mangment Ststem is ",
-      answer: 1,
-      options: ['BloC', 'GetX', 'Provider', 'riverPod'],
+      question: "A sequence of asynchronous Flutter events is known as a: ",
+      answer: 3,
+      options: ['Flow', 'Current', 'Stream', 'Series'],
     ),
     QuestionModel(
       id: 3,
