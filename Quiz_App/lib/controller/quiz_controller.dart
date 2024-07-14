@@ -52,9 +52,9 @@ class QuizController extends GetxController {
     ),
     QuestionModel(
       id: 7,
-      question: "Sherif love",
+      question: "What language is Flutter's rendering engine primarily written in?",
       answer: 3,
-      options: ['Pharma', 'Micro', 'Medicnal', 'NONE OF ABOVE'],
+      options: ['Kotlin', 'C++', 'Dart', 'Java'],
     ),
     QuestionModel(
       id: 8,
