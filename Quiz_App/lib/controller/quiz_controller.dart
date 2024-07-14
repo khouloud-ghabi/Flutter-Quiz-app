@@ -53,14 +53,14 @@ class QuizController extends GetxController {
     QuestionModel(
       id: 7,
       question: "What language is Flutter's rendering engine primarily written in?",
-      answer: 3,
+      answer: 2,
       options: ['Kotlin', 'C++', 'Dart', 'Java'],
     ),
     QuestionModel(
       id: 8,
-      question: "hello",
-      answer: 3,
-      options: ['hello', 'hi', 'hola', 'Suiiiiiiiiiiii'],
+      question: "What widget would you use for repeating content in Flutter?",
+      answer: 2,
+      options: ['ExpandedView', 'ListView', 'Stack', 'ArrayView'],
     ),
     QuestionModel(
       id: 9,
