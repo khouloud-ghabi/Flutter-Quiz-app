@@ -34,15 +34,15 @@ class QuizController extends GetxController {
     ),
     QuestionModel(
       id: 4,
-      question: "Sherif is",
+      question: "Which function will return the widgets attached to the screen as a root of the widget tree to be rendered on screen?",
       answer: 1,
-      options: ['eng', 'Doc', 'eng/Doc', 'Doc/Eng'],
+      options: ['main()', ' runApp()', 'container()', 'root()'],
     ),
     QuestionModel(
       id: 5,
-      question: "Best Rapper in Egypt",
-      answer: 3,
-      options: ['Eljoker', 'Abyu', 'R3', 'All of the above'],
+      question: "What is the key configuration file used when building a Flutter project?",
+      answer: 1,
+      options: ['pubspec.yaml', 'pubspec.xml', 'config.html', 'All of the above'],
     ),
     QuestionModel(
       id: 6,
