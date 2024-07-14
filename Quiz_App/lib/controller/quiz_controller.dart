@@ -11,13 +11,13 @@ class QuizController extends GetxController {
   final List<QuestionModel> _questionList = [
     QuestionModel(
       id: 1,
-      question: "Best Channel for Flutter ",
-      answer: 2,
+      question: "How many types of widgets are there in Flutter?",
+      answer: 1,
       options: [
-        'Sec it',
-        'Sec it developer',
-        'sec it developers',
-        'mesh sec it '
+        '2',
+        '4',
+        '6',
+        '8+'
       ],
     ),
     QuestionModel(
