@@ -46,9 +46,9 @@ class QuizController extends GetxController {
     ),
     QuestionModel(
       id: 6,
-      question: "Real Name of ahmed sherif",
-      answer: 2,
-      options: ['ahmed sherif', 'sherif', 'Haytham', 'NONE OF ABOVE'],
+      question: "Which release mode will not contain any debugging data when run?",
+      answer: 3,
+      options: ['Profile', ' Debug', 'Release', 'Test'],
     ),
     QuestionModel(
       id: 7,
