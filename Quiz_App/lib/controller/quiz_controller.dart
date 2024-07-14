@@ -28,9 +28,9 @@ class QuizController extends GetxController {
     ),
     QuestionModel(
       id: 3,
-      question: "Best Flutter dev",
+      question: "What element is used as an identifier for components when programming in Flutter?",
       answer: 2,
-      options: ['sherif', 'sherif ahmed', 'ahmed sherif', 'doc sherif'],
+      options: ['Widgets', 'Keys', ' Elements', 'Serial'],
     ),
     QuestionModel(
       id: 4,
