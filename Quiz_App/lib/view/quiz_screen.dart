@@ -7,8 +7,6 @@ import 'package:quiz_app/widget/custom_button.dart';
 import 'package:quiz_app/widget/progress_timer.dart';
 import 'package:quiz_app/widget/question_card.dart';
 
-
-
 class QuizScreen extends StatelessWidget {
   const QuizScreen({Key? key}) : super(key: key);
   static const routeName = '/quiz_screen';
@@ -29,7 +27,7 @@ class QuizScreen extends StatelessWidget {
                 // image: DecorationImage(
                 //     image: AssetImage('assets/images/here.jpg'),
                 //     fit: BoxFit.cover),
-                color: Colors.black87),
+                color: Color.fromARGB(221, 39, 104, 245)),
           ),
           SafeArea(
             child: GetBuilder<QuizController>(
@@ -48,11 +46,12 @@ class QuizScreen extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .headline4!
-                                  .copyWith(color: Colors.white),
+                                  .copyWith(
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255)),
                               children: [
                                 TextSpan(
-                                    text: controller.QuestionNumber
-                                        .round()
+                                    text: controller.QuestionNumber.round()
                                         .toString(),
                                     style: Theme.of(context)
                                         .textTheme
@@ -93,10 +92,6 @@ class QuizScreen extends StatelessWidget {
                   ),
                   const SizedBox(
                     height: 20,
-                  ),
-                  Image.asset(
-                    "assets/images/shf.png",
-                    height: 250,
                   ),
                 ],
               ),

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:quiz_app/controller/quiz_controller.dart';
 import 'package:quiz_app/model/question.dart';
 
-
 import 'answer_option.dart';
 
 class QuestionCard extends StatelessWidget {
@@ -21,7 +20,7 @@ class QuestionCard extends StatelessWidget {
           height: 450,
           margin: const EdgeInsets.symmetric(horizontal: 20.0),
           decoration: BoxDecoration(
-            color: Colors.grey,
+            color: Color.fromARGB(255, 132, 191, 255),
             borderRadius: BorderRadius.circular(25.0),
           ),
           child: Padding(

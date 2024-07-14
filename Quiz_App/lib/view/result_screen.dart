@@ -15,11 +15,7 @@ class ResultScreen extends StatelessWidget {
         body: Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/back.jpg'),
-                fit: BoxFit.cover),
-          ),
+          color: Color.fromARGB(255, 181, 223, 255),
         ),
         Center(
           child: GetBuilder<QuizController>(
@@ -30,7 +26,7 @@ class ResultScreen extends StatelessWidget {
                 Text(
                   'Congratulation',
                   style: Theme.of(context).textTheme.headline3!.copyWith(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 37, 3, 130),
                       ),
                 ),
                 const SizedBox(
@@ -48,7 +44,7 @@ class ResultScreen extends StatelessWidget {
                 Text(
                   'Your Score is',
                   style: Theme.of(context).textTheme.headline4!.copyWith(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 17, 219, 34),
                       ),
                 ),
                 const SizedBox(
@@ -61,10 +57,10 @@ class ResultScreen extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 40,
+            
                 ),
                 CustomButton(
-
                     onPressed: () => controller.startAgain(),
                     text: 'Start Again'),
               ],
